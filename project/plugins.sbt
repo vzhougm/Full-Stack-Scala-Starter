@@ -1,4 +1,4 @@
-
+import sbt.Resolver
 // Comment to get more information during initialization
 logLevel := Level.Warn
 

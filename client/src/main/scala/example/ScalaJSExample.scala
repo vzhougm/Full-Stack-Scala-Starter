@@ -5,6 +5,7 @@ import com.thoughtworks.binding.Binding
 import org.lrng.binding.html
 import org.scalajs.dom.{Event, Node, document}
 import org.scalajs.dom.ext.Ajax
+import org.scalajs.dom.raw.HTMLBRElement
 
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scala.scalajs.js.JSON
@@ -26,6 +27,16 @@ object ScalaJSExample {
     val url = "http://localhost:9000/count"
     Ajax.get(url).foreach(xhr =>
       data.value = JSON.parse(xhr.responseText).count.toString)
+  }
+
+  val bindingInt: Binding[Int] = Binding {
+    1000
+  }
+
+  // @html val bindingBr: Binding[Node] = <br/>
+
+  val bindingString: Binding[String] = Binding {
+    bindingInt.bind.toString
   }
 
 
@@ -50,7 +61,9 @@ object ScalaJSExample {
       .
     </div>
 
-
+      <div>Binding
+        {bindingInt.bind.toString}
+      </div>
       <div>
         <button onclick={event: Event => datas.value += Contact(Var("Yang Bo"), Var("yang.bo@rea-group.com"))}>
           Add a contact

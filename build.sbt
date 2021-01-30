@@ -21,11 +21,14 @@ lazy val client = (project in file("client"))
   .settings(
     scalaJSUseMainModuleInitializer := true,
     scalacOptions += "-Ymacro-annotations",
+    resolvers += Resolver.bintrayRepo("hmil", "maven"),
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "1.1.0",
       "org.lrng.binding" %%% "html" % "latest.release",
-      "com.thoughtworks.binding" %%% "futurebinding" % "12.0.0",
-      "fr.hmil" % "roshttp_2.12" % "2.1.0"
+      "com.thoughtworks.binding" %%% "route" % "latest.release",
+      "com.thoughtworks.binding" %%% "binding" % "latest.release",
+      "com.thoughtworks.binding" %%% "futurebinding" % "latest.release",
+      "fr.hmil" %%% "roshttp" % "3.0.0"
     )
   )
   .enablePlugins(ScalaJSPlugin, ScalaJSWeb)
